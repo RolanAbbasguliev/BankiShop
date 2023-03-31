@@ -1,5 +1,12 @@
 <template>
-  <div class="modal" v-if="show" @click="hideModal">
+  <div
+    class="modal"
+    v-if="show"
+    @click="hideModal"
+    @wheel.prevent
+    @touchmove.prevent
+    @scroll.prevent
+  >
     <div @click.stop class="modal_container">
       <h1 class="title">{{ card.title }}</h1>
 
@@ -23,12 +30,15 @@
             </v-carousel-item>
           </v-carousel>
         </div>
+        <h4 v-if="card.price === 0" class="price">Продан на аукционе</h4>
+        <h4 v-else class="price">{{ card.price }}$</h4>
         <h4 class="description">
           {{ card.description }}
         </h4>
-        <h4 class="price">{{ card.price }}$</h4>
       </div>
-      <button class="hideBtn">Закрыть</button>
+      <button class="hideBtn" @click="hideModal">
+        <font-awesome-icon icon="fa-circle-xmark" />
+      </button>
     </div>
   </div>
 </template>
@@ -58,9 +68,10 @@ export default {
 .hideBtn {
   position: absolute;
   bottom: 50px;
-  left: 50%;
+
+  text-align: center;
   font-size: 50px;
-  background-color: red;
+
   margin: 0 auto;
 }
 .modal {
@@ -76,7 +87,8 @@ export default {
 
 .modal_container {
   width: 50%;
-  height: 100%;
+  height: 100vh;
+  min-height: 100%;
   margin: 0 auto;
   background-color: white;
   border-radius: 12px;
@@ -110,6 +122,11 @@ export default {
 
 .image {
   border-radius: 10px;
+}
+
+.price {
+  font-size: 30px;
+  margin-top: 10px;
 }
 
 @media (max-width: 910px) {

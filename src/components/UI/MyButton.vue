@@ -2,7 +2,7 @@
   <button @click="toggleBtn" :class="{ active: btnIsActive }">
     <slot>
       <h4 v-if="btnIsActive">
-        <font-awesome-icon class="icon" icon="fa-check" /> В корзине
+        <font-awesome-icon class="icon" icon="fa-check" />В Корзине
       </h4>
       <h4 v-else>Купить</h4>
     </slot>
@@ -17,6 +17,12 @@ export default {
       type: Boolean,
       required: false,
     },
+  },
+
+  data() {
+    return {
+      btnName: 'Купить',
+    };
   },
 
   methods: {

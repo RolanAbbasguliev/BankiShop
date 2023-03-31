@@ -74,7 +74,7 @@ export default {
 
     saveCard(card) {
       //add Id
-      // console.log('ACTIVE', this.btnIsActive);
+      console.log('ACTIVE', this.btnIsActive);
       if (this.btnIsActive) {
         if (localStorage.storeId) {
           let id = localStorage.storeId + ' ' + card.id.toString();
